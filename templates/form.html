@@ -20,6 +20,7 @@
                   </form>
               </div>
           </div>
+          {% if sentiment %}    
           <div class="row">
             <div class="col-lg-8 mx-auto mt-5">
               <div class="text-center">
@@ -35,13 +36,15 @@
               </div>
             </div>
         </div>
+    {% endif %}
     </div>
+    {% if sentiment %}     
     <script>
         var data = [
         {
           type: "indicator",
           mode: "gauge+number",
-          value: 50,
+          value: {{ sentiment['custom model positive'] }},
           font: { color: "yellow", family: "lato" },
           delta: { position : "top", reference: 0, increasing: { color: "#49b170" } },
           
@@ -74,7 +77,7 @@
     
       var data2 = [{
       type: 'bar',
-      x: [3,  59, 30],
+      x: [{{ sentiment['pos']*100 }}, {{ sentiment['neu']*100 }}, {{ sentiment['neg']*100 }}],
       y: ['Positive ', 'Neutral ', 'Negative '],
       orientation: 'h',
       marker: {
