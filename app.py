@@ -31,6 +31,7 @@ def sentiment_analysis(input):
     prediction = model.predict(user_sequences_matrix)
     return round(float(prediction[0][0]),2)
 
+@app.route("/", methods=["GET", "POST"])
 def index():
     sentiment = dict()
     text = ""
